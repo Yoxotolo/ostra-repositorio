@@ -1,0 +1,3 @@
+para instalações das api
+
+composer require cloudinary/cloudinary_php

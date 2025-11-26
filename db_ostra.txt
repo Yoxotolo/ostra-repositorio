@@ -1,0 +1,254 @@
+-- ========== SCRIPT CORRIGIDO ==========
+
+CREATE DATABASE IF NOT EXISTS db_tcc;
+USE db_tcc;
+
+-- Tabela de usuários (vibers e produtores)
+CREATE TABLE IF NOT EXISTS usuarios (
+    id_usuario BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nm_nome VARCHAR(100) NOT NULL,
+    nm_username VARCHAR(50) UNIQUE NOT NULL, -- @username
+    ds_email VARCHAR(100) UNIQUE NOT NULL,
+    ds_senha VARCHAR(255) NOT NULL, -- Hash da senha
+    ic_tipo_usuario ENUM('usuario', 'produtor') NOT NULL,
+    ds_biografia TEXT DEFAULT NULL, -- Bio do usuário
+    ds_foto_perfil VARCHAR(255) DEFAULT NULL, -- URL da foto de perfil
+    ds_foto_capa VARCHAR(255) DEFAULT NULL, -- URL da foto de capa
+    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    dt_atualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+-- Tabela de perfil de artista (informações extras para produtores)
+CREATE TABLE IF NOT EXISTS perfil_artista (
+    id_artista BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    fk_id_usuario BIGINT UNSIGNED UNIQUE NOT NULL,
+    ds_generos_principais VARCHAR(255), -- Ex: "Trap, Lo-Fi, Hip-Hop"
+    nr_total_vendas INT DEFAULT 0,
+    vl_total_arrecadado DECIMAL(10,2) DEFAULT 0.00,
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+);
+
+-- Tabela de projetos (álbuns ou coleções)
+CREATE TABLE IF NOT EXISTS projetos (
+    cd_projeto BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nm_projeto VARCHAR(200) NOT NULL,
+    ds_projeto TEXT,
+    vl_projeto DECIMAL(10,2) NOT NULL,
+    fk_id_usuario BIGINT UNSIGNED NOT NULL,
+    ic_tipo_venda ENUM('exclusiva', 'multipla') DEFAULT 'multipla',
+    ds_foto_capa VARCHAR(255) DEFAULT NULL,
+    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+);
+
+-- Tabela de músicas
+CREATE TABLE IF NOT EXISTS musicas (
+    id_musica BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    ds_musica VARCHAR(20), -- ISRC (opcional)
+    nm_musica VARCHAR(200) NOT NULL,
+    ds_arquivo VARCHAR(255) NOT NULL, -- Caminho do arquivo de áudio
+    vl_musica DECIMAL(10,2) NOT NULL,
+    fk_cd_projeto BIGINT UNSIGNED DEFAULT NULL,
+    fk_id_usuario BIGINT UNSIGNED NOT NULL,
+    ic_tipo_venda ENUM('exclusiva', 'multipla') DEFAULT 'multipla',
+    dt_criacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_cd_projeto) REFERENCES projetos(cd_projeto) ON DELETE SET NULL,
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE
+);
+
+-- Tabela de gêneros musicais
+CREATE TABLE IF NOT EXISTS generos (
+    id_genero BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nm_genero VARCHAR(100) UNIQUE NOT NULL
+);
+
+-- Relação música-gênero (muitos para muitos)
+CREATE TABLE IF NOT EXISTS musica_genero (
+    fk_id_musica BIGINT UNSIGNED NOT NULL,
+    fk_id_genero BIGINT UNSIGNED NOT NULL,
+    PRIMARY KEY (fk_id_musica, fk_id_genero),
+    FOREIGN KEY (fk_id_musica) REFERENCES musicas(id_musica) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_genero) REFERENCES generos(id_genero) ON DELETE CASCADE
+);
+
+-- Tabela de formas de pagamento
+CREATE TABLE IF NOT EXISTS formas_pagamento (
+    id_forma BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    nm_forma VARCHAR(50) NOT NULL UNIQUE,
+    ic_ativo BOOLEAN DEFAULT TRUE
+);
+
+-- Tabela de pagamentos
+CREATE TABLE IF NOT EXISTS pagamentos (
+    id_pagamento BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    vl_pagamento DECIMAL(10,2) NOT NULL,
+    fk_id_forma_pagamento BIGINT UNSIGNED NOT NULL,
+    fk_id_usuario BIGINT UNSIGNED NOT NULL,
+    fk_id_musica BIGINT UNSIGNED DEFAULT NULL,
+    fk_cd_projeto BIGINT UNSIGNED DEFAULT NULL,
+    dt_pagamento TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_id_forma_pagamento) REFERENCES formas_pagamento(id_forma) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_musica) REFERENCES musicas(id_musica) ON DELETE SET NULL,
+    FOREIGN KEY (fk_cd_projeto) REFERENCES projetos(cd_projeto) ON DELETE SET NULL
+);
+
+-- Tabela de histórico de compras
+CREATE TABLE IF NOT EXISTS historico_compras (
+    id_historico BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    fk_id_usuario BIGINT UNSIGNED NOT NULL,
+    fk_id_pagamento BIGINT UNSIGNED NOT NULL,
+    fk_id_musica BIGINT UNSIGNED DEFAULT NULL,
+    fk_cd_projeto BIGINT UNSIGNED DEFAULT NULL,
+    dt_compra TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_pagamento) REFERENCES pagamentos(id_pagamento) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_musica) REFERENCES musicas(id_musica) ON DELETE SET NULL,
+    FOREIGN KEY (fk_cd_projeto) REFERENCES projetos(cd_projeto) ON DELETE SET NULL
+);
+
+-- Tabela de carrinho
+CREATE TABLE IF NOT EXISTS carrinho (
+    id_carrinho BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    fk_id_usuario BIGINT UNSIGNED NOT NULL,
+    fk_id_musica BIGINT UNSIGNED DEFAULT NULL,
+    fk_cd_projeto BIGINT UNSIGNED DEFAULT NULL,
+    dt_adicao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_id_usuario) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_musica) REFERENCES musicas(id_musica) ON DELETE SET NULL,
+    FOREIGN KEY (fk_cd_projeto) REFERENCES projetos(cd_projeto) ON DELETE SET NULL
+);
+
+-- Tabela de seguidores (follow system)
+CREATE TABLE IF NOT EXISTS seguidores (
+    id_seguidor BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    fk_id_seguidor BIGINT UNSIGNED NOT NULL, -- Quem está seguindo
+    fk_id_seguido BIGINT UNSIGNED NOT NULL, -- Quem está sendo seguido
+    dt_seguiu TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (fk_id_seguidor) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    FOREIGN KEY (fk_id_seguido) REFERENCES usuarios(id_usuario) ON DELETE CASCADE,
+    UNIQUE KEY unique_follow (fk_id_seguidor, fk_id_seguido)
+);
+
+-- Inserir formas de pagamento
+INSERT INTO formas_pagamento (nm_forma) VALUES
+('Cartão de Crédito'),
+('Cartão de Débito'),
+('Pix'),
+('PayPal');
+
+-- Inserir gêneros musicais
+INSERT INTO generos (nm_genero) VALUES
+('Trap'), ('Lo-Fi'), ('Hip-Hop'), ('Pop'), ('Jazz'),
+('Funk'), ('Indie'), ('Eletrônica'), ('R&B'), ('Rock');
+
+
+
+DELIMITER $$
+
+-- ========== PROCEDURES DE USUÁRIO ==========
+
+-- Criar usuário (com hash de senha)
+DROP PROCEDURE IF EXISTS sp_criar_usuario$$
+CREATE PROCEDURE sp_criar_usuario(
+    IN p_nome VARCHAR(100),
+    IN p_username VARCHAR(50),
+    IN p_email VARCHAR(100),
+    IN p_senha VARCHAR(255), -- Já deve vir com hash do PHP
+    IN p_tipo ENUM('usuario', 'produtor')
+)
+BEGIN
+    -- Verificar se email já existe
+    IF EXISTS (SELECT 1 FROM usuarios WHERE ds_email = p_email) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email já cadastrado';
+    -- Verificar se username já existe
+    ELSEIF EXISTS (SELECT 1 FROM usuarios WHERE nm_username = p_username) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Username já está em uso';
+    ELSE
+        INSERT INTO usuarios (nm_nome, nm_username, ds_email, ds_senha, ic_tipo_usuario)
+        VALUES (p_nome, p_username, p_email, p_senha, p_tipo);
+        
+        -- Se for produtor, criar perfil de artista
+        IF p_tipo = 'produtor' THEN
+            INSERT INTO perfil_artista (fk_id_usuario)
+            VALUES (LAST_INSERT_ID());
+        END IF;
+    END IF;
+END$$
+
+-- Login (buscar usuário por email)
+DROP PROCEDURE IF EXISTS sp_login$$
+CREATE PROCEDURE sp_login(
+    IN p_email VARCHAR(100)
+)
+BEGIN
+    SELECT id_usuario, nm_nome, nm_username, ds_email, ds_senha, ic_tipo_usuario,
+           ds_biografia, ds_foto_perfil, ds_foto_capa
+    FROM usuarios
+    WHERE ds_email = p_email;
+END$$
+
+-- Atualizar perfil
+DROP PROCEDURE IF EXISTS sp_atualizar_perfil$$
+CREATE PROCEDURE sp_atualizar_perfil(
+    IN p_id_usuario BIGINT UNSIGNED,
+    IN p_nome VARCHAR(100),
+    IN p_username VARCHAR(50),
+    IN p_biografia TEXT
+)
+BEGIN
+    -- Verificar se username já está em uso por outro usuário
+    IF EXISTS (
+        SELECT 1 FROM usuarios 
+        WHERE nm_username = p_username 
+        AND id_usuario != p_id_usuario
+    ) THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Username já está em uso';
+    ELSE
+        UPDATE usuarios
+        SET nm_nome = p_nome,
+            nm_username = p_username,
+            ds_biografia = p_biografia
+        WHERE id_usuario = p_id_usuario;
+    END IF;
+END$$
+
+-- Atualizar foto de perfil
+DROP PROCEDURE IF EXISTS sp_atualizar_foto_perfil$$
+CREATE PROCEDURE sp_atualizar_foto_perfil(
+    IN p_id_usuario BIGINT UNSIGNED,
+    IN p_foto_perfil VARCHAR(255)
+)
+BEGIN
+    UPDATE usuarios
+    SET ds_foto_perfil = p_foto_perfil
+    WHERE id_usuario = p_id_usuario;
+END$$
+
+-- Atualizar foto de capa
+DROP PROCEDURE IF EXISTS sp_atualizar_foto_capa$$
+CREATE PROCEDURE sp_atualizar_foto_capa(
+    IN p_id_usuario BIGINT UNSIGNED,
+    IN p_foto_capa VARCHAR(255)
+)
+BEGIN
+    UPDATE usuarios
+    SET ds_foto_capa = p_foto_capa
+    WHERE id_usuario = p_id_usuario;
+END$$
+
+-- Buscar perfil de usuário
+DROP PROCEDURE IF EXISTS sp_buscar_perfil$$
+CREATE PROCEDURE sp_buscar_perfil(
+    IN p_id_usuario BIGINT UNSIGNED
+)
+BEGIN
+    SELECT u.*, 
+           (SELECT COUNT(*) FROM musicas WHERE fk_id_usuario = u.id_usuario) AS total_musicas,
+           (SELECT COUNT(*) FROM seguidores WHERE fk_id_seguido = u.id_usuario) AS total_seguidores,
+           (SELECT COUNT(*) FROM seguidores WHERE fk_id_seguidor = u.id_usuario) AS total_seguindo
+    FROM usuarios u
+    WHERE u.id_usuario = p_id_usuario;
+END$$
+
+DELIMITER ;
