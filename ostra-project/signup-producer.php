@@ -63,6 +63,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body class="signup-page">
     <div class="signup-container">
         <div class="signup-header">
+            <div class="signup-icon">
+                <img src="assets/AFFGGE/logo-white.svg" alt="">
+            </div>
             <h1 class="signup-title">Cadastro Para Produtor</h1>
         </div>
 
