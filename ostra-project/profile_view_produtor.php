@@ -184,8 +184,21 @@
                         <div class="music-list">
                             <?php foreach ($user_music as $music): ?>
                                 <div class="music-item">
-                                    <p><strong><?php echo htmlspecialchars($music['nm_musica']); ?></strong> - <?php echo htmlspecialchars($music['nm_artista'] ?? $profile_name); ?></p>
-                                    <audio controls src="<?php echo htmlspecialchars($music['ds_arquivo']); ?>"></audio>
+                                    <div class="music-item-cover">
+                                        <img src="<?php echo htmlspecialchars($music['ds_foto_capa'] ?? 'assets/default-album.svg'); ?>" alt="Capa" class="music-cover-image">
+                                    </div>
+                                    <div class="music-item-info">
+                                        <h3><?php echo htmlspecialchars($music['nm_musica']); ?></h3>
+                                        <p class="music-artist"><?php echo htmlspecialchars($music['nm_artista']); ?></p>
+                                        <p class="music-date">Lançamento: <?php echo date('d/m/Y', strtotime($music['dt_lancamento'])); ?></p>
+                                        <p class="music-type">Tipo: <?php echo ($music['ic_tipo_compra'] === 'unica') ? 'Compra Única' : 'Compra Múltipla'; ?></p>
+                                        <?php if (!empty($music['ds_descricao'])): ?>
+                                            <p class="music-description"><?php echo htmlspecialchars(substr($music['ds_descricao'], 0, 100)); ?>...</p>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="music-item-player">
+                                        <audio controls src="<?php echo htmlspecialchars($music['ds_arquivo']); ?>"></audio>
+                                    </div>
                                 </div>
                             <?php endforeach; ?>
                         </div>
