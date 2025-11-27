@@ -316,14 +316,12 @@ body {
 }
 
 .signup-icon {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 20px;
+  width: 100%;
+  height: 10vh;
 }
 
-.signup-icon svg {
-  width: 100%;
-  height: 100%;
+.signup-icon img {
+  width: 15vh;
 }
 
 .signup-title {
@@ -1458,6 +1456,8 @@ body {
 
 /* ========== PROFILE PAGE ========== */
 
+/*#region Profile Page*/
+
 /* Profile Content */
 .profile-content {
   flex: 1;
@@ -1635,10 +1635,7 @@ body {
 /* Profile Stats */
 .profile-stats {
   display: flex;
-  gap: 40px;
-  margin-bottom: 25px;
-  padding-bottom: 25px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 50px;
 }
 
 .stat-item {
@@ -1820,6 +1817,26 @@ body {
   color: #666;
   font-size: 16px;
 }
+
+/*#endregion*/
+
+
+/*#region YXT Profile*/
+
+.status{
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+}
+
+.tipo-conta {
+  display: flex;
+  padding-top: 5%;
+  align-items: baseline;
+}
+
+/*#endregion*/
+
 
 /* #endregion */
 

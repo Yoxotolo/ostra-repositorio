@@ -67,17 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <!-- Header do Formulário -->
         <div class="signup-header">
             <div class="signup-icon">
-                <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ícone de controle + nota musical -->
-                    <path d="M40 10C35 10 30 12 30 15V35C30 38 35 40 40 40C45 40 50 38 50 35V15C50 12 45 10 40 10Z" fill="#00D9D9"/>
-                    <rect x="25" y="35" width="30" height="8" rx="4" fill="#00D9D9"/>
-                    <rect x="20" y="43" width="40" height="5" rx="2.5" fill="#00D9D9"/>
-                    <circle cx="60" cy="25" r="8" fill="#00D9D9"/>
-                    <rect x="65" y="15" width="3" height="15" fill="#00D9D9"/>
-                    <path d="M 30 55 L 35 65 L 30 70 L 25 65 Z" fill="#00D9D9"/>
-                    <path d="M 40 55 L 45 65 L 40 70 L 35 65 Z" fill="#00D9D9"/>
-                    <path d="M 50 55 L 55 65 L 50 70 L 45 65 Z" fill="#00D9D9"/>
-                </svg>
+                <img src="assets/AFFGGE/logo-white.svg" alt="">
             </div>
             <h1 class="signup-title">Cadastro Para Viber</h1>
             <?php if(isset($erro)): ?>
@@ -208,7 +198,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             // alert('Cadastro realizado com sucesso!'); // Removido, pois o PHP fará o redirecionamento ou exibirá o erro
             // A lógica de envio está sendo tratada pelo PHP no topo do arquivo.
-        });
+        
     </script>
 </body>
 </html>
