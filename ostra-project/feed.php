@@ -37,6 +37,7 @@ $profile_photo = $user['ds_foto_perfil'] ?? 'assets/default-avatar.svg';
 <body class="feed-page">
     <!-- Sidebar -->
     <?php include 'sidebar.php'; ?>
+    <?php include 'player.php'; ?>
 
 
     <!-- Main Content -->
@@ -83,7 +84,7 @@ $profile_photo = $user['ds_foto_perfil'] ?? 'assets/default-avatar.svg';
 
                     
                     <div class="albuns">
-                        <div class="album">
+                        <div class="album musica" data-src="uploads/temp/pedro.wav" style="cursor:pointer;">
                             <div class="cover"><!-- Cubo --></div>
                             <h1><b>Album Name</b></h1>
                             <p>Artist Name</p>

@@ -2182,7 +2182,31 @@ body {
 }
 
 
+
 /* #endregion */
+
+
+
+/*#region referente ao media player */
+
+#audio-player {
+    position: fixed;
+    bottom: 0;
+    left: 70%;
+    width: 100%;
+    background: #111;
+    padding: 10px;
+    display: none; /* escondido por padrão */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+}
+
+#audio-player audio {
+    width: 100%;
+}
+
+/*#endregion referente ao media player */
+
+
 
 
 
