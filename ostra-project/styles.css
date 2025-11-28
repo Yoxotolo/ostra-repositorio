@@ -2192,7 +2192,7 @@ body {
 #audio-player {
     position: fixed;
     bottom: 0;
-    left: 70%;
+    left: 0;
     width: 100%;
     background: #111;
     padding: 10px;
@@ -2203,6 +2203,7 @@ body {
 #audio-player audio {
     width: 100%;
 }
+
 
 /*#endregion referente ao media player */
 

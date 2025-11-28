@@ -16,13 +16,9 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 ?>
 <aside>
-    <div id="audio-player" style="display:none;">
-        <audio id="player" controls></audio>
-    </div>
-
-    <div id="audio-player" style="display:none;">
-        <audio id="player" controls></audio>
-    </div>
+<div id="audio-player" style="display:none;">
+    <audio id="player" controls></audio>
+</div>
 </aside>
 
 <script>
