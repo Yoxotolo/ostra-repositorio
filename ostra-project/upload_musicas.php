@@ -234,7 +234,7 @@ $audio_filename = isset($_SESSION['temp_audio_filename']) ? $_SESSION['temp_audi
             .then(data => {
                 if (data.success) {
                     // Caminho relativo simples, já que os arquivos estão na mesma pasta
-                    window.location.href = 'upload_musicas_metadata.php?temp_file=' + encodeURIComponent(data.temp_file);
+                   window.location.href = 'upload_musicas_metadatas.php'; 
                 } else {
                     alert('Erro ao enviar arquivo: ' + (data.message || 'Erro desconhecido'));
                     btn.disabled = false;

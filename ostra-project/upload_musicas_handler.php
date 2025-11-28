@@ -1,25 +1,25 @@
 <?php
 // Manipulador de upload de músicas
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+// ini_set('display_errors', 1);
+// ini_set('display_startup_errors', 1);
+// error_reporting(E_ALL);
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 // Função para retornar erro em JSON e sair
-function return_error($message, $http_code = 400) {
-    http_response_code($http_code);
+function return_error($message, $http_code = 400 ) {
+    http_response_code($http_code );
     header('Content-Type: application/json');
     echo json_encode(['success' => false, 'message' => $message]);
     exit();
 }
 
 // Função para retornar sucesso em JSON e sair
-function return_success($data = [], $http_code = 200) {
-    http_response_code($http_code);
+function return_success($data = [], $http_code = 200 ) {
+    http_response_code($http_code );
     header('Content-Type: application/json');
     echo json_encode(array_merge(['success' => true], $data));
     exit();
@@ -30,6 +30,11 @@ if (!isset($_SESSION["usuario_id"])) {
 }
 
 include 'db.php';
+
+// TRATAMENTO DE ERRO DE CONEXÃO (Correção 2)
+if ($conn->connect_error) {
+    return_error('Falha na conexão com o banco de dados: ' . $conn->connect_error, 500);
+}
 
 $usuario_id = $_SESSION["usuario_id"];
 
@@ -83,7 +88,7 @@ if ($action === 'upload_audio') {
     $temp_dir = 'uploads/temp/';
     if (!is_dir($temp_dir)) {
         if (!mkdir($temp_dir, 0777, true)) {
-            return_error('Erro ao criar diretório temporário');
+            return_error('Erro ao criar diretório temporário. Verifique as permissões.');
         }
     }
 
@@ -93,12 +98,18 @@ if ($action === 'upload_audio') {
 
     // Mover arquivo para diretório temporário
     if (move_uploaded_file($file_tmp_path, $temp_file_path)) {
+        
+        // SOLUÇÃO ROBUSTA: Salvar o caminho completo na sessão
+        $_SESSION['temp_audio_path'] = $temp_file_path;
+        
         return_success([
-            'temp_file' => $temp_file_name,
             'message' => 'Arquivo de áudio recebido com sucesso'
         ]);
     } else {
-        return_error('Erro ao mover arquivo', 500);
+        // TRATAMENTO DE ERRO MELHORADO (Correção 3)
+        $php_error = error_get_last();
+        $error_message = 'Erro ao mover arquivo. Detalhe: ' . ($php_error ? $php_error['message'] : 'Verifique as permissões da pasta uploads/temp/');
+        return_error($error_message, 500);
     }
 }
 
@@ -108,7 +119,7 @@ if ($action === 'upload_audio') {
 else if ($action === 'save_music') {
     
     // Recuperar dados do formulário
-    $temp_file = isset($_POST['temp_file']) ? $_POST['temp_file'] : '';
+    $temp_file_path = isset($_POST['temp_file_path']) ? $_POST['temp_file_path'] : ''; // NOVO: Recupera o caminho completo
     $music_name = isset($_POST['music_name']) ? trim($_POST['music_name']) : '';
     $artist_name = isset($_POST['artist_name']) ? trim($_POST['artist_name']) : '';
     $release_date = isset($_POST['release_date']) ? $_POST['release_date'] : '';
@@ -125,13 +136,13 @@ else if ($action === 'save_music') {
     }
 
     // Validar arquivo temporário
-    if (empty($temp_file)) {
-        return_error('Arquivo temporário não especificado');
+    if (empty($temp_file_path)) {
+        return_error('Caminho do arquivo temporário não especificado');
     }
-
-    $temp_path = 'uploads/temp/' . basename($temp_file);
-    if (!file_exists($temp_path)) {
-        return_error('Arquivo temporário não encontrado');
+    
+    // NOVO: Valida o caminho completo
+    if (!file_exists($temp_file_path)) {
+        return_error('Arquivo temporário não encontrado. Verifique as permissões ou se o arquivo foi limpo pelo servidor.');
     }
 
     // Se não informar artista, usar nome do usuário
@@ -192,13 +203,17 @@ else if ($action === 'save_music') {
         }
     }
 
-    $audio_ext = pathinfo($temp_path, PATHINFO_EXTENSION);
+    $audio_ext = pathinfo($temp_file_path, PATHINFO_EXTENSION);
     $audio_file_name = 'music_' . $usuario_id . '_' . time() . '.' . $audio_ext;
     $audio_destination = $audio_dir . $audio_file_name;
 
-    if (!rename($temp_path, $audio_destination)) {
-        return_error('Erro ao processar arquivo de áudio', 500);
+    // Usa o caminho completo do arquivo temporário
+    if (!rename($temp_file_path, $audio_destination)) {
+        return_error('Erro ao processar arquivo de áudio (rename falhou)', 500);
     }
+    
+    // NOVO: Limpar a sessão após o uso
+    unset($_SESSION['temp_audio_path']);
 
     // Inserir música no banco de dados
     $sql_insert = "INSERT INTO musicas (nm_musica, nm_artista, ds_arquivo, ds_foto_capa, dt_lancamento, ic_tipo_compra, fk_id_usuario, ds_descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

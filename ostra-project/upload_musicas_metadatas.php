@@ -29,10 +29,11 @@ if ($user_data['ic_tipo_usuario'] !== 'produtor') {
 }
 
 // Recupera o arquivo temporário
-$temp_file = isset($_GET['temp_file']) ? $_GET['temp_file'] : null;
+$temp_file_path = isset($_SESSION['temp_audio_path']) ? $_SESSION['temp_audio_path'] : null;
 
-if (!$temp_file) {
-    header("Location: upload_musicas.php");
+if (!$temp_file_path || !file_exists($temp_file_path)) {
+    // Se não houver caminho na sessão ou o arquivo não existir, redireciona
+    header("Location: upload_musicas.php?upload=error&msg=" . urlencode("Arquivo de áudio temporário não encontrado ou expirado."));
     exit();
 }
 
@@ -83,7 +84,7 @@ if (!file_exists($temp_path)) {
                 <p class="form-subtitle">Preencha as informações sobre sua música</p>
 
                 <form id="metadataForm" enctype="multipart/form-data">
-                    <input type="hidden" name="action" value="save_music">
+                    <input type="hidden" name="temp_file_path" value="<?php echo htmlspecialchars($temp_file_path); ?>">
                     <input type="hidden" name="temp_file" value="<?php echo htmlspecialchars($temp_file); ?>">
 
                     <!-- Nome da Música -->

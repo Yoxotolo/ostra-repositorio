@@ -39,21 +39,7 @@
                 <!-- Card Viber -->
                 <div class="account-card" onclick="window.location.href='signup-viber.php'">
                     <div class="account-card-icon">
-                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Personagem Pixel Art - Viber -->
-                            <rect x="45" y="20" width="30" height="10" fill="#8B4513"/>
-                            <rect x="40" y="30" width="40" height="25" fill="#FFD4A3"/>
-                            <rect x="48" y="38" width="6" height="6" fill="#000"/>
-                            <rect x="66" y="38" width="6" height="6" fill="#000"/>
-                            <rect x="35" y="55" width="50" height="35" fill="#4169E1"/>
-                            <rect x="30" y="60" width="10" height="25" fill="#FFD4A3"/>
-                            <rect x="80" y="60" width="10" height="25" fill="#FFD4A3"/>
-                            <rect x="40" y="90" width="15" height="20" fill="#2F4F4F"/>
-                            <rect x="65" y="90" width="15" height="20" fill="#2F4F4F"/>
-                            <!-- Espada -->
-                            <rect x="90" y="50" width="4" height="30" fill="#C0C0C0"/>
-                            <rect x="88" y="48" width="8" height="4" fill="#FFD700"/>
-                        </svg>
+                        <img src="assets/Viber-icon.svg" alt="">
                     </div>
                     <div class="account-card-content">
                         <button class="account-card-button">Cadastrar como viber</button>
@@ -66,23 +52,7 @@
                 <!-- Card Produtor -->
                 <div class="account-card" onclick="window.location.href='signup-producer.php'">
                     <div class="account-card-icon">
-                        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Personagem Pixel Art - Produtor -->
-                            <rect x="45" y="15" width="30" height="15" fill="#FF1493"/>
-                            <rect x="40" y="30" width="40" height="25" fill="#FFD4A3"/>
-                            <rect x="48" y="38" width="6" height="6" fill="#000"/>
-                            <rect x="66" y="38" width="6" height="6" fill="#000"/>
-                            <rect x="35" y="55" width="50" height="35" fill="#8B008B"/>
-                            <!-- Tentáculos -->
-                            <path d="M 30 70 Q 20 80 25 95" stroke="#FF1493" stroke-width="6" fill="none"/>
-                            <path d="M 40 75 Q 30 85 35 100" stroke="#FF1493" stroke-width="6" fill="none"/>
-                            <path d="M 80 75 Q 90 85 85 100" stroke="#FF1493" stroke-width="6" fill="none"/>
-                            <path d="M 90 70 Q 100 80 95 95" stroke="#FF1493" stroke-width="6" fill="none"/>
-                            <!-- Fones de ouvido -->
-                            <rect x="25" y="35" width="8" height="12" rx="4" fill="#00CED1"/>
-                            <rect x="87" y="35" width="8" height="12" rx="4" fill="#00CED1"/>
-                            <path d="M 33 41 Q 60 30 87 41" stroke="#00CED1" stroke-width="3" fill="none"/>
-                        </svg>
+                        <img src="assets/Producer-icon-B.svg" alt="">
                     </div>
                     <div class="account-card-content">
                         <button class="account-card-button">Cadastrar como Produtor</button>

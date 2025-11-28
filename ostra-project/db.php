@@ -7,6 +7,5 @@ $dbname = "ostra";    // nome do banco que vamos criar
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-    die("Falha na conexão: " . $conn->connect_error);
+    // Em um contexto AJAX, não use die(). O script handler deve tratar a falha.
 }
-?>
