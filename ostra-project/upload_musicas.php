@@ -40,6 +40,13 @@ if (isset($_GET['upload']) && $_GET['upload'] == 'success') {
 // Recupera o arquivo de áudio da sessão se existir
 $audio_file = isset($_SESSION['temp_audio_file']) ? $_SESSION['temp_audio_file'] : null;
 $audio_filename = isset($_SESSION['temp_audio_filename']) ? $_SESSION['temp_audio_filename'] : null;
+
+$stmt = $conn->prepare("SELECT ds_foto_perfil FROM usuarios WHERE id_usuario = ?");
+$stmt->bind_param("i", $usuario_id);
+$stmt->execute();
+$stmt->bind_result($profile_photo);
+$stmt->fetch()
+
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +72,11 @@ $audio_filename = isset($_SESSION['temp_audio_filename']) ? $_SESSION['temp_audi
 
             <div class="user-profile">
                 <div class="user-avatar">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="16" fill="#2a2a2a"/>
-                        <circle cx="16" cy="12" r="5" fill="#00D9D9"/>
-                        <path d="M6 26C6 21 10 18 16 18C22 18 26 21 26 26" fill="#00D9D9"/>
-                    </svg>
+                    <?php if ($profile_photo !== NULL  ): ?>
+                            <img src="<?php echo $profile_photo; ?>" alt="Profile Picture" class="avatar-image" id="avatarImage">
+                    <?php else: ?>
+                        <img src="assets/default-avatar.png" alt="Avatar" style="object-fit: cover;">
+                    <?php endif; ?>
                 </div>
             </div>
         </header>

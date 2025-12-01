@@ -77,7 +77,7 @@
                         <form id="avatarUploadForm" action="upload_handler.php" method="POST" enctype="multipart/form-data" style="display: none;">
     <input type="hidden" name="action" value="upload_image">
     <input type="hidden" name="image_type" value="profile">
-    <input type="file" id="avatarInput" name="image_file" accept="image/*" onchange="document.getElementById('avatarUploadForm' ).submit();">
+    <input type="file" id="avatarInput" name="foto" accept="image/*" onchange="document.getElementById('avatarUploadForm' ).submit();">
 </form>
 <button class="edit-avatar-btn" id="editAvatarBtn">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

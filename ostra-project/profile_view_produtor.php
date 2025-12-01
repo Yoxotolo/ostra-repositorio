@@ -35,7 +35,7 @@
             <div class="user-profile">
                 <div class="user-avatar">
                     <?php if ($profile_photo !== 'assets/default-avatar.svg'  ): ?>
-                        <img src="<?php echo $profile_photo; ?>" alt="Avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
+                        <img src="<?php echo $profile_photo; ?>" alt="Avatar" style="">
                     <?php else: ?>
                         <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle cx="16" cy="16" r="16" fill="#2a2a2a"/>
@@ -56,7 +56,7 @@
                 <form id="coverUploadForm" action="upload_handler.php" method="POST" enctype="multipart/form-data" style="display: none;">
     <input type="hidden" name="action" value="upload_image">
     <input type="hidden" name="image_type" value="cover">
-    <input type="file" id="coverInput" name="image_file" accept="image/*" onchange="document.getElementById('coverUploadForm' ).submit();">
+    <input type="file" id="coverInput" name="banner" accept="image/*" onchange="document.getElementById('coverUploadForm' ).submit();">
 </form>
 <button class="edit-cover-btn" id="editCoverBtn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,7 +77,7 @@
                         <form id="avatarUploadForm" action="upload_handler.php" method="POST" enctype="multipart/form-data" style="display: none;">
     <input type="hidden" name="action" value="upload_image">
     <input type="hidden" name="image_type" value="profile">
-    <input type="file" id="avatarInput" name="image_file" accept="image/*" onchange="document.getElementById('avatarUploadForm' ).submit();">
+    <input type="file" id="avatarInput" name="foto" accept="image/*" onchange="document.getElementById('avatarUploadForm' ).submit();">
 </form>
 <button class="edit-avatar-btn" id="editAvatarBtn">
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
