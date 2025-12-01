@@ -56,7 +56,7 @@
                 <form id="coverUploadForm" action="upload_handler.php" method="POST" enctype="multipart/form-data" style="display: none;">
     <input type="hidden" name="action" value="upload_image">
     <input type="hidden" name="image_type" value="cover">
-    <input type="file" id="coverInput" name="image_file" accept="image/*" onchange="document.getElementById('coverUploadForm' ).submit();">
+    <input type="file" id="coverInput" name="banner" accept="image/*" onchange="document.getElementById('coverUploadForm' ).submit();">
 </form>
 <button class="edit-cover-btn" id="editCoverBtn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

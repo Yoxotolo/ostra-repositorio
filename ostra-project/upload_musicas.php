@@ -84,33 +84,31 @@ $stmt->fetch()
         <div class="upload-container">
             <?php echo $upload_message; ?>
 
-            <h1 class="upload-title">Upload de Músicas</h1>
-            <p class="upload-subtitle">Arraste seu arquivo de áudio ou clique para selecionar</p>
+            <div>           
+                <h1 class="upload-title">Upload de Músicas</h1>
+                <p class="upload-subtitle">Arraste seu arquivo de áudio ou clique para selecionar</p>
 
-            <div class="upload-section" id="uploadSection">
-                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M21 15V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M17 8L12 3L7 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M12 3V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <h2>Arraste seu arquivo aqui</h2>
-                <p>ou clique para selecionar um arquivo de áudio</p>
-                <p class="supported-formats">Formatos suportados: MP3, WAV, OGG, M4A, FLAC</p>
-                <input type="file" id="fileInput" class="file-input" accept="audio/*">
-            </div>
+                <div class="upload-section" id="uploadSection">
+                    <img src="assets/upload-icon.svg" style="width: 100%;" alt="">
+                    <h2>Arraste seu arquivo aqui</h2>
+                    <p>ou clique para selecionar um arquivo de áudio</p>
+                    <p class="supported-formats">Formatos suportados: MP3, WAV, OGG, M4A, FLAC</p>
+                    <input type="file" id="fileInput" class="file-input" accept="audio/*">
+                </div>
 
-            <div id="fileInfo" class="file-info" style="display: none;">
-                <h3>Arquivo Selecionado</h3>
-                <div id="fileList"></div>
-            </div>
+                <div id="fileInfo" class="file-info" style="display: none;">
+                    <h3>Arquivo Selecionado</h3>
+                    <div id="fileList"></div>
+                </div>
 
-            <div id="audioPreview" class="audio-preview" style="display: none;">
-                <audio id="audioPlayer" controls></audio>
-            </div>
+                <div id="audioPreview" class="audio-preview" style="display: none;">
+                    <audio id="audioPlayer" controls></audio>
+                </div>
 
-            <div class="button-group" id="buttonGroup" style="display: none;">
-                <button class="btn-secondary" onclick="clearFile( )">Limpar</button>
-                <button class="btn-primary" onclick="proceedToMetadata()">Continuar</button>
+                <div class="button-group" id="buttonGroup" style="display: none;">
+                    <button class="btn-secondary" onclick="clearFile( )">Limpar</button>
+                    <button class="btn-primary" onclick="proceedToMetadata()">Continuar</button>
+                </div>
             </div>
         </div>
     </main>
