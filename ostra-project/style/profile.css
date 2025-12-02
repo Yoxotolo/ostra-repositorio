@@ -1,0 +1,731 @@
+/* #region Profile Page */
+
+/* ========== PROFILE PAGE ========== */
+
+/*#region Profile Page*/
+
+/* Profile Content */
+.profile-content {
+  flex: 1;
+}
+
+/* Cover Photo */
+.profile-cover {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.edit-cover-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  border: 2px solid #00d9d9;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.edit-cover-btn:hover {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  transform: translateY(-2px);
+}
+
+/* Profile Info Section */
+.profile-info-section {
+  padding: 0 40px;
+  margin-top: -80px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Container do Avatar */
+.profile-avatar-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Wrapper para posicionar o botão */
+.profile-avatar-wrapper {
+  position: relative;
+  width: 160px;
+  height: 160px;
+}
+
+/* Círculo do Avatar - CORTA A FOTO */
+.profile-avatar {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 5px solid #1a1a2e;
+  overflow: hidden; /* CORTA A FOTO */
+  background-color: #2a2a2a;
+}
+
+/* Imagem do Avatar */
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Botão de editar avatar - FORA do círculo mas dentro do wrapper */
+.edit-avatar-btn {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  border: 4px solid #1a1a2e;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.edit-avatar-btn:hover {
+  background-color: #00f0f0;
+  transform: scale(1.15);
+}
+
+.edit-avatar-btn svg {
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+}
+
+/* Profile Info */
+.profile-info {
+  background-color: rgba(15, 15, 30, 0.6);
+  border-radius: 15px;
+  padding: 30px;
+  margin-top: 20px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 25px;
+}
+
+.profile-name {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.profile-username {
+  font-size: 16px;
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.profile-badge {
+  display: inline-block;
+  background-color: rgba(0, 217, 217, 0.2);
+  color: #00d9d9;
+  padding: 5px 15px;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid #00d9d9;
+}
+
+.btn-edit-profile {
+  background-color: transparent;
+  color: #00d9d9;
+  border: 2px solid #00d9d9;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.btn-edit-profile:hover {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  transform: translateY(-2px);
+}
+
+/* Profile Stats */
+.profile-stats {
+  display: flex;
+  gap: 50px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  color: #00d9d9;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #999;
+  margin-top: 5px;
+}
+
+/* Profile Bio */
+.profile-bio {
+  position: relative;
+  margin-top: 20px;
+}
+
+.bio-display {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  min-height: 60px;
+}
+
+.bio-display p {
+  color: #cccccc;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.bio-edit {
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.bio-textarea {
+  width: 100%;
+  min-height: 100px;
+  background-color: rgba(40, 40, 50, 0.8);
+  border: 2px solid rgba(0, 217, 217, 0.3);
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 15px;
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.bio-textarea:focus {
+  border-color: #00d9d9;
+  background-color: rgba(50, 50, 60, 0.9);
+}
+
+.bio-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.char-count {
+  font-size: 12px;
+  color: #999;
+}
+
+.btn-save-bio,
+.btn-cancel-bio {
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-save-bio {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  border: none;
+}
+
+.btn-save-bio:hover {
+  background-color: #00f0f0;
+  transform: translateY(-2px);
+}
+
+.btn-cancel-bio {
+  background-color: transparent;
+  color: #999;
+  border: 1px solid #999;
+  margin-left: 10px;
+}
+
+.btn-cancel-bio:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.btn-edit-bio {
+  /*! position: ; */
+  /*! top: 10px; */
+  /*! right: 10px; */
+  background-color: transparent;
+  color: #00d9d9;
+  border: 1px solid #00d9d9;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  margin: 2%;
+}
+
+.btn-edit-bio:hover {
+  background-color: rgba(0, 217, 217, 0.1);
+}
+
+/* Profile Tabs */
+.profile-tabs {
+  display: flex;
+  gap: 5px;
+  padding: 0 40px;
+  margin-top: 30px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-btn {
+  background-color: transparent;
+  color: #999;
+  border: none;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: #00d9d9;
+}
+
+.tab-btn.active {
+  color: #00d9d9;
+  border-bottom-color: #00d9d9;
+}
+
+/* Tab Content */
+.tab-content {
+  padding: 40px;
+  min-height: 300px;
+}
+
+.empty-tab-state {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+.empty-tab-state p {
+  color: #666;
+  font-size: 16px;
+}
+
+/*#endregion*/
+
+
+/*#region YXT Profile*/
+
+.status{
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+}
+
+.tipo-conta {
+  display: flex;
+  padding-top: 5%;
+  align-items: baseline;
+}
+
+/*#endregion*/
+
+
+/* #endregion */
+
+
+
+/* #region Edit Profile Moldal */
+
+/* ========== EDIT PROFILE MODAL ========== */
+
+.edit-profile-modal {
+  max-width: 500px;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.username-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.username-prefix {
+  position: absolute;
+  left: 20px;
+  color: #00d9d9;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.username-input {
+  padding-left: 35px !important;
+}
+
+.input-hint {
+  display: block;
+  margin-top: 5px;
+  color: #999;
+  font-size: 12px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: #999;
+  border: 2px solid #999;
+}
+
+.btn-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.btn-save {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  border: none;
+}
+
+.btn-save:hover {
+  background-color: #00f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 217, 217, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .profile-cover {
+    height: 200px;
+  }
+
+  .profile-info-section {
+    padding: 0 20px;
+    margin-top: -60px;
+  }
+
+  .profile-avatar {
+    width: 120px;
+    height: 120px;
+  }
+
+  .profile-info {
+    padding: 20px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .profile-name {
+    font-size: 24px;
+  }
+
+  .profile-stats {
+    gap: 20px;
+  }
+
+  .profile-tabs {
+    padding: 0 20px;
+  }
+
+  .tab-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+
+  .tab-content {
+    padding: 20px;
+  }
+}
+
+/* Fix para botão Editar Capa clicável */
+.profile-cover {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+  overflow: hidden;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #1a1a2e;
+}
+
+.edit-cover-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #ffffff;
+  border: 2px solid #00d9d9;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.edit-cover-btn:hover {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  transform: translateY(-2px);
+}
+
+.edit-cover-btn svg {
+  pointer-events: none;
+}
+/* CORREÇÃO URGENTE - Botão Editar Capa clicável */
+.profile-cover {
+  position: relative !important;
+  width: 100%;
+  height: 300px;
+  background: linear-gradient(135deg, #2a2a3e 0%, #1a1a2e 100%);
+  overflow: visible !important;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-color: #1a1a2e;
+  position: relative;
+  z-index: 1;
+}
+
+.edit-cover-btn {
+  position: absolute !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+  color: #ffffff !important;
+  border: 2px solid #00d9d9 !important;
+  padding: 10px 20px !important;
+  border-radius: 25px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  transition: all 0.3s ease !important;
+  z-index: 9999 !important;
+  pointer-events: auto !important;
+}
+
+.edit-cover-btn:hover {
+  background-color: #00d9d9 !important;
+  color: #1a1a2e !important;
+  transform: translateY(-2px) !important;
+}
+
+.edit-cover-btn svg {
+  pointer-events: none !important;
+  width: 20px;
+  height: 20px;
+}
+
+/* Garantir que nada bloqueie o botão */
+.profile-info-section {
+  position: relative;
+  z-index: 5;
+}
+/* Estilos para a página de Upload */
+.upload-container {
+    background-color: #1e1e1e; /* Cor de fundo do card principal */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    max-width: 800px;
+    margin: 40px auto; /* Centraliza na tela */
+}
+
+/* Estilos para o Seletor de Abas */
+.form-selector-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.selector-tab {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 3px solid transparent;
+    margin-right: 10px;
+}
+
+.selector-tab:hover {
+    color: #fff;
+}
+
+.selector-tab.active {
+    color: #00D9D9; /* Cor de destaque do seu tema */
+    border-bottom: 3px solid #00D9D9;
+}
+
+/* Estilos para o Conteúdo do Formulário */
+.form-content-area {
+    padding: 10px 0;
+}
+
+.form-pane {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.form-pane.active {
+    display: block;
+}
+
+/* Animação simples */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Estilos para os títulos e subtítulos dentro do formulário */
+.form-pane .card-title {
+    color: #fff;
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.form-pane .card-subtitle {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* Estilos gerais de formulário (assumindo que você já os tem) */
+.upload-form .form-group {
+    margin-bottom: 15px;
+}
+
+.upload-form label {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.upload-form input[type="text"],
+.upload-form input[type="number"],
+.upload-form select,
+.upload-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #2a2a2a;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.upload-form button.btn-primary {
+    background-color: #00D9D9;
+    color: #1e1e1e;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.upload-form button.btn-primary:hover {
+    background-color: #00b8b8;
+}
+
+
+/* #endregion */

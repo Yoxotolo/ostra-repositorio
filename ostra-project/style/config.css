@@ -1,0 +1,279 @@
+/* #region Config */
+
+.main-content {
+  margin-left: 80px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
+
+.config-page .main-content {
+  margin-left: 80px;
+  flex-grow: 1;
+  padding: 0; /* Remove padding padrão para usar o padding do config-container */
+}
+
+
+/* Estilos para a página de Configurações (Fundo Branco/Claro) */
+
+
+.config-page {
+  background-color: #f0f2f5; /* Fundo claro para a página de configurações */
+  color: #1a1a2e; /* Texto escuro */
+}
+
+.config-page .sidebar {
+  background-color: #ffffff; /* Sidebar branca */
+  border-right: 1px solid #ddd;
+}
+
+.config-page .sidebar .nav-item {
+  color: #1a1a2e; /* Ícones e texto escuros */
+}
+
+.config-page .sidebar .nav-item svg {
+  color: #1a1a2e;
+}
+
+.config-page .sidebar .nav-item:hover {
+  background-color: #e4e6eb;
+}
+
+.config-page .sidebar .nav-item.active {
+  background-color: #e7f3ff;
+  color: #1877f2;
+}
+
+.config-page .sidebar .nav-item.active svg {
+  color: #1877f2;
+}
+
+.config-page .main-content {
+  background-color: #ffffff; /* Conteúdo principal branco */
+}
+
+.config-page .top-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #ddd;
+}
+
+.config-page .search-input {
+  background-color: #f0f2f5;
+  border: 1px solid #ddd;
+  color: #1a1a2e;
+}
+
+.config-page .search-icon {
+  color: #606770;
+}
+
+
+/* Estilos para o Conteúdo de Configurações */
+
+
+.config-container {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.config-menu {
+  width: 250px;
+  flex-shrink: 0;
+  padding-right: 20px;
+  border-right: 1px solid #ddd;
+}
+
+.config-menu-item {
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #1a1a2e;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.config-menu-item:hover {
+  background-color: #e4e6eb;
+}
+
+.config-menu-item.active {
+  background-color: #1877f2;
+  color: #ffffff;
+}
+
+.config-content-area {
+  flex-grow: 1;
+  padding-left: 40px;
+}
+
+.config-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #1a1a2e;
+}
+
+.config-subtitle {
+  font-size: 16px;
+  color: #606770;
+  margin-bottom: 30px;
+}
+
+.config-form .form-label {
+  color: #1a1a2e;
+}
+
+.config-form .form-input {
+  background-color: #f0f2f5;
+  border: 1px solid #ddd;
+  color: #1a1a2e;
+}
+
+.config-form .btn-submit {
+  background-color: #1877f2;
+  color: #ffffff;
+}
+
+.config-form .btn-submit:hover {
+  background-color: #166fe5;
+}
+
+  /* #endregion */
+
+
+
+/* #region Edit Profile / YXT here*/
+
+  /* #region YXT */
+
+.config-content-area-A {
+  flex-grow: 1;
+  
+  padding: 0% 10% 0% 5%;
+}
+
+.form-group-A {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand', sans-serif;
+  margin-bottom: 2.5%;
+}
+
+.form-group-A input {
+  margin: 1%;
+  padding: 0.5% 0% 0.5% 2%;
+  font-size: 1.2em;
+  font-family: 'Quicksand', sans-serif;
+  border: 1px solid #282828;
+  border-radius: 8px
+}
+
+.form-group-A label {
+  margin-left: 2%;
+}
+
+.form-group-A textarea {
+  margin: 1%;
+  resize: none;
+  min-height: 80px;
+  height: 10vh;
+  padding: 0.5% 0% 0.5% 2%;
+  font-size: 0.9em;
+  font-family: 'Quicksand', sans-serif;
+  border: 1px solid #282828;
+  border-radius: 8px
+}
+
+
+  /* #endregion */
+
+
+  /* #region rest */
+
+/* ========== EDIT PROFILE MODAL ========== */
+
+.edit-profile-modal {
+  max-width: 500px;
+}
+
+.modal-body {
+  padding: 20px 0;
+}
+
+.username-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.username-prefix {
+  position: absolute;
+  left: 20px;
+  color: #00d9d9;
+  font-size: 16px;
+  font-weight: 600;
+  z-index: 1;
+}
+
+.username-input {
+  padding-left: 35px !important;
+}
+
+.input-hint {
+  display: block;
+  margin-top: 5px;
+  color: #999;
+  font-size: 12px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancel {
+  background-color: transparent;
+  color: #999;
+  border: 2px solid #999;
+}
+
+.btn-cancel:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: #ffffff;
+}
+
+.btn-save {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  border: none;
+}
+
+.btn-save:hover {
+  background-color: #00f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 217, 217, 0.4);
+}
+  /* #endregion */
+
+/* #endregion */

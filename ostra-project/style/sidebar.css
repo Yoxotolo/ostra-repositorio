@@ -1,0 +1,132 @@
+/* #region Sidebar */
+.sidebar {
+  width: 80px;
+  background-color: #0f0f1e;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  padding: 30px 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar:hover {
+  width: 250px;
+  padding: 30px 20px;
+}
+
+.sidebar-header {
+  margin-bottom: 40px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.sidebar-logo-icon {
+  height: 35px;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.sidebar-logo-text {
+  height: 25px;
+  width: auto;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .sidebar-logo-text {
+  opacity: 1;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 15px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  justify-content: flex-start;
+}
+
+.nav-item svg {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.nav-item span {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .nav-item {
+  padding: 15px 20px;
+}
+
+.sidebar:hover .nav-item span {
+  opacity: 1;
+}
+
+.nav-item:hover {
+  background-color: rgba(0, 217, 217, 0.1);
+  color: #00d9d9;
+}
+
+.nav-item:hover svg {
+  color: #00d9d9;
+}
+
+.nav-item.active {
+  background-color: rgba(0, 217, 217, 0.15);
+  color: #00d9d9;
+}
+
+.nav-item.active svg {
+  color: #00d9d9;
+}
+
+/* Sidebar Divider */
+.sidebar-divider {
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 217, 217, 0.3) 20%,
+    rgba(0, 217, 217, 0.3) 80%,
+    transparent
+  );
+  margin: 30px 0;
+  border: none;
+  border-style: dashed;
+  border-top: 2px dashed rgba(0, 217, 217, 0.3);
+}
+
+.sidebar-section {
+  flex: 1;
+  margin-top: 20px;
+}
+
+/* #endregion */

@@ -23,6 +23,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         </div>
     </div>
 
+    <link rel="stylesheet" href="style/sidebar.css">
+
     <nav class="sidebar-nav">
         <a href="feed.php" class="nav-item <?php echo ($current_page === 'feed.php') ? 'active' : ''; ?>">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

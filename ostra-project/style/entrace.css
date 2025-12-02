@@ -1,0 +1,430 @@
+/* #region Entrace, [ index.php || account-type.php || signup-producer.php || signup-viber.php] || signin.php */
+
+
+    /* #region Home Page Entrace, [ index.php ] */
+
+  /* ========== HOME PAGE ========== */
+
+.home-page {
+  min-height: 100vh;
+  position: relative;
+}
+
+.hero-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+  /* #endregion Home Page Entrace */
+
+
+
+    /* #region Moldal para tipo de conta, [ account-type.php ] */
+
+/* ========== MODAL ========== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal {
+  background: linear-gradient(
+    135deg,
+    rgba(60, 60, 70, 0.95) 0%,
+    rgba(40, 40, 50, 0.95) 100%
+  );
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal {
+  transform: scale(1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.close-btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  color: #ffffff;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+  transform: rotate(90deg);
+}
+
+  /* #endregion Moldal For Acount Type  */
+
+
+
+    /* #region Tipo de Conta, [ account-type.php ] */
+
+/* Account Type Cards */
+.account-types {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.account-card {
+  background: linear-gradient(
+    135deg,
+    rgba(80, 80, 90, 0.6) 0%,
+    rgba(60, 60, 70, 0.6) 100%
+  );
+  border-radius: 15px;
+  padding: 25px;
+  display: flex;
+  gap: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.account-card:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(90, 90, 100, 0.7) 0%,
+    rgba(70, 70, 80, 0.7) 100%
+  );
+  border-color: #00d9d9;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 217, 217, 0.2);
+}
+
+.account-card-icon {
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.account-card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.account-card-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.account-card-button {
+  background-color: #ffffff;
+  color: #1a1a2e;
+  padding: 10px 25px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  align-self: flex-start;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.account-card:hover .account-card-button {
+  background-color: #00d9d9;
+}
+
+.account-card-description {
+  color: #cccccc;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+  /* #endregion Tipo de conta*/
+
+
+
+    /* #region Pagina de Cadastro, [ signup-producer.php || signup-viber.php ] */
+
+/* ========== SIGNUP PAGE ========== */
+.signup-page {
+  min-height: 100vh;
+  background-color: #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.signup-container {
+  max-width: 550px;
+  width: 100%;
+}
+
+.signup-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.signup-icon {
+  width: 100%;
+  height: 10vh;
+}
+
+.signup-icon img {
+  width: 15vh;
+}
+
+.signup-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+}
+
+.signup-form {
+  background-color: transparent;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-label {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.form-input {
+  width: 100%;
+  padding: 15px 20px;
+  background-color: rgba(200, 200, 220, 0.9);
+  border: 3px solid #6b5dd3;
+  border-radius: 10px;
+  color: #333;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.form-input::placeholder {
+  color: #666;
+}
+
+.form-input:focus {
+  background-color: rgba(220, 220, 240, 0.95);
+  border-color: #00d9d9;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.checkbox-group a {
+  color: #00d9d9;
+  text-decoration: underline;
+}
+
+.form-footer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-submit {
+  padding: 15px 40px;
+  background-color: #00d9d9;
+  color: #1a1a2e;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+  background-color: #00f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 217, 217, 0.4);
+}
+
+.form-footer-text {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.form-footer-text a {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.signup-note {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  color: #999;
+  font-size: 12px;
+  line-height: 1.6;
+  text-align: center;
+}
+
+  /* #endregion */
+
+  
+
+    /* #region Header Entrace */
+
+
+/* ========== HEADER ========== */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  padding: 20px 0;
+  z-index: 1000;
+}
+
+
+/* Logo */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo-icon {
+  height: 45px;
+  width: auto;
+}
+
+.logo-text {
+  height: 32px;
+  width: auto;
+  margin-top: 6%;
+}
+
+
+/* Header Right */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: 0;
+}
+
+
+/* Buttons */
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 28px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background-color: #00d9d9;
+  color: #1a1a2e;
+}
+
+.btn-primary:hover {
+  background-color: #00f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 217, 217, 0.4);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: #ffffff;
+  border: 2px solid transparent;
+}
+
+.btn-secondary:hover {
+  border-color: #00d9d9;
+  color: #00d9d9;
+}
+
+    /* #endregion */
+
+
+/* #endregion Entrace*/

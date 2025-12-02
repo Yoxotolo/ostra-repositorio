@@ -32,7 +32,10 @@ $profile_photo = $user['ds_foto_perfil'] ?? 'assets/default-avatar.svg';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Feed - OSTRA</title>
+
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/feed.css">
+
 </head>
 <body class="feed-page">
     <!-- Sidebar -->
@@ -42,26 +45,7 @@ $profile_photo = $user['ds_foto_perfil'] ?? 'assets/default-avatar.svg';
     <!-- Main Content -->
     <main class="main-content">
         <!-- Top Header -->
-        <header class="top-header">
-            <div class="search-container">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <input type="text" class="search-input" placeholder="Search Bar . . .">
-            </div>
-
-            <div class="user-profile">
-                <div class="user-avatar">
-                    <?php if ($profile_photo !== 'assets/default-avatar.svg' ): ?>
-                        <img src="<?php echo $profile_photo; ?>" alt="Avatar" style="">
-                    <?php else: ?>
-                        <img src="assets/default-avatar.png" alt="Avatar" style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover;">
-                    <?php endif; ?>
-                </div>
-            </div>
-        </header>
-
+        <?php include 'header.php'; ?>
 
 
     <!--#region-->

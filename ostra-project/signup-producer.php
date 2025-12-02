@@ -58,7 +58,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro Para Produtor - OSTRA</title>
+    
+    <link rel="stylesheet" href="style/entrace.css">
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body class="signup-page">
     <div class="signup-container">

@@ -58,25 +58,7 @@ if (!file_exists($temp_path)) {
     <?php include 'sidebar.php'; ?>
 
     <main class="main-content">
-        <header class="top-header">
-            <div class="search-container">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
-                    <path d="M21 21L16.65 16.65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <input type="text" class="search-input" placeholder="Search Bar . . .">
-            </div>
-
-            <div class="user-profile">
-                <div class="user-avatar">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="16" cy="16" r="16" fill="#2a2a2a"/>
-                        <circle cx="16" cy="12" r="5" fill="#00D9D9"/>
-                        <path d="M6 26C6 21 10 18 16 18C22 18 26 21 26 26" fill="#00D9D9"/>
-                    </svg>
-                </div>
-            </div>
-        </header>
+        <?php include 'header.php'; ?>
 
         <div class="metadata-container">
             <div class="metadata-form">
