@@ -38,7 +38,7 @@ if (!$temp_file_path || !file_exists($temp_file_path)) {
 }
 
 // Validar que o arquivo temporário existe
-$temp_path = 'uploads/temp/' . basename($temp_file);
+$temp_path = 'uploads/temp/' . basename($temp_file_path);
 if (!file_exists($temp_path)) {
     header("Location: upload_musicas.php?upload=error&msg=" . urlencode("Arquivo temporário não encontrado."));
     exit();
