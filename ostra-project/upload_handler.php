@@ -17,19 +17,12 @@ include 'db.php';
 
 if (isset($_FILES['foto'])) {
 
-/* Parte para suposta exclusão (Não esta funcionando por enquanto, mexer depois)
-
 $stmt = $conn->prepare("SELECT ds_foto_perfil FROM usuarios WHERE id_usuario = ?");
 $stmt->bind_param("i", $usuario_id);
 $stmt->execute();
 $stmt->bind_result($old_pfp);
 $stmt->fetch();
 $stmt->close();
-
-if ($old_pfp && file_exists($old_pfp) && $old_pfp !== "assets/default-avatar.png") {
-    unlink($old_pfp);
-}
-     */
 
  #region Verificar se houve algum erro ao enviar o arquivo 
 
@@ -92,6 +85,12 @@ if (!move_uploaded_file($_FILES['foto']['tmp_name'], $caminho))
 
 
  #region 
+
+/*
+if ($old_pfp && file_exists($old_pfp) && $old_pfp !== "assets/default-avatar.png") {
+    unlink($old_pfp);
+}
+*/
 
 $sql = "UPDATE usuarios SET ds_foto_perfil = ? WHERE id_usuario = ?";
 $stmt = $conn->prepare($sql);

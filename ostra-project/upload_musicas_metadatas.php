@@ -38,9 +38,10 @@ if (!$temp_file_path || !file_exists($temp_file_path)) {
 }
 
 // Validar que o arquivo temporário existe
-$temp_path = 'uploads/temp/' . basename($temp_file_path);
-if (!file_exists($temp_path)) {
-    header("Location: upload_musicas.php?upload=error&msg=" . urlencode("Arquivo temporário não encontrado."));
+$temp_file_path = $_SESSION['temp_audio_path'] ?? null;
+
+if (!$temp_file_path || !file_exists($temp_file_path)) {
+    header("Location: upload_musicas.php?upload=error&msg=" . urlencode("Arquivo de áudio temporário não encontrado ou expirado."));
     exit();
 }
 
@@ -66,8 +67,10 @@ if (!file_exists($temp_path)) {
                 <p class="form-subtitle">Preencha as informações sobre sua música</p>
 
                 <form id="metadataForm" enctype="multipart/form-data">
+
+                    <input type="hidden" name="temp_file_path" value="<?php echo $_SESSION['temp_audio_path']; ?>">
+
                     <input type="hidden" name="temp_file_path" value="<?php echo htmlspecialchars($temp_file_path); ?>">
-                    <input type="hidden" name="temp_file" value="<?php echo htmlspecialchars($temp_file); ?>">
 
                     <!-- Nome da Música -->
                     <div class="form-group">

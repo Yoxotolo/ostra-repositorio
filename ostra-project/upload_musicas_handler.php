@@ -116,6 +116,7 @@ if ($action === 'upload_audio') {
 // ============================================
 // AÇÃO 2: Salvar música com metadados
 // ============================================
+
 else if ($action === 'save_music') {
     
     // Recuperar dados do formulário
@@ -186,7 +187,7 @@ else if ($action === 'save_music') {
 
         // Gerar nome único para a imagem
         $image_file_name = 'cover_' . $usuario_id . '_' . time() . '.' . $image_ext;
-        $image_destination = $image_dir . $image_file_name;
+        $image_destination = __DIR__ . '/' . $image_dir . $image_file_name;
 
         if (move_uploaded_file($image_tmp, $image_destination)) {
             $image_path = $image_destination;
@@ -205,7 +206,10 @@ else if ($action === 'save_music') {
 
     $audio_ext = pathinfo($temp_file_path, PATHINFO_EXTENSION);
     $audio_file_name = 'music_' . $usuario_id . '_' . time() . '.' . $audio_ext;
-    $audio_destination = $audio_dir . $audio_file_name;
+
+    $temp_file_path = __DIR__ . '/' . $temp_file_path;
+    $audio_destination = __DIR__ . '/' . $audio_dir . $audio_file_name;
+
 
     // Usa o caminho completo do arquivo temporário
     if (!rename($temp_file_path, $audio_destination)) {
