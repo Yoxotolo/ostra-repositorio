@@ -45,14 +45,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body class="signup-page">
     <div class="signup-container">
         <div class="signup-header">
-            <div class="signup-icon">
-                <!-- Ícone do site -->
-            </div>
-            <h1 class="signup-title">Entrar na OSTRA</h1>
-            <?php if(isset($_GET['cadastro']) && $_GET['cadastro'] == 'sucesso'): ?>
-                <p style='color:green; text-align:center; margin-top: 10px; font-weight: bold;'>Cadastro realizado com sucesso! Faça login abaixo.</p>
-            <?php endif; ?>
-        </div>
+    <div class="signup-icon">
+        <!-- LOGO ADICIONADA AQUI -->
+        <img src="assets/AFFGGE/logo-white.svg" alt="OSTRA Logo">
+    </div>
+    <h1 class="signup-title">Entrar na OSTRA</h1>
+    <?php if(isset($_GET['cadastro']) && $_GET['cadastro'] == 'sucesso'): ?>
+        <p style='color:green; text-align:center; margin-top: 10px; font-weight: bold;'>Cadastro realizado com sucesso! Faça login abaixo.</p>
+    <?php endif; ?>
+</div>
 
         <form class="signup-form" method="POST">
             <div class="form-group">

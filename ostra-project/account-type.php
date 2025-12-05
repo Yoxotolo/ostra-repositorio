@@ -27,7 +27,7 @@
 
     <!-- Background Image -->
     <div class="hero-background">
-        <img src="assets/background-home.svg" alt="OSTRA Background">
+        <img src="assets/background-home.png" alt="OSTRA Background">
     </div>
 
     <!-- Modal de Seleção de Tipo de Conta -->

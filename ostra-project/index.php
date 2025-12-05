@@ -11,25 +11,29 @@
 </head>
 
 <body class="home-page">
-    <!-- Header -->
-    <header class="header">
-        <div class="container">
-            <div class="logo">
-                <img src="assets/AFFGGE/logo-white.svg" alt="OSTRA Icon" class="logo-icon">
-                <img src="assets/AFFGGE/lettering-white.svg" alt="OSTRA" class="logo-text">
-            </div>
-            
-            <div class="header-right">
-                <button class="btn-secondary" onclick="window.location.href='signin.php'">Sign In</button>
-                <button class="btn-primary" onclick="window.location.href='account-type.php'">Create Account</button>
+
+    <!-- Seção Esquerda com a Logo -->
+    <div class="split-screen-left">
+        <div class="logo-container">
+            <img src="assets/AFFGGE/logo-white.svg" alt="OSTRA Logo" class="logo-icon">
+            <img src="assets/AFFGGE/lettering-white.svg" alt="OSTRA" class="logo-text">
+        </div>
+    </div>
+
+    <!-- Seção Direita com o Conteúdo -->
+    <div class="split-screen-right">
+        <div class="content-container">
+            <h1 class="title">Bem-vindo ao OSTRA</h1>
+            <p class="description">
+                A plataforma definitiva que conecta desenvolvedores de jogos a músicos e produtores de áudio. Encontre a trilha sonora perfeita para o seu game ou ofereça seu talento para o mundo.
+            </p>
+            <div class="buttons-container">
+                <button class="btn-primary" onclick="window.location.href='account-type.php'">Criar Conta</button>
+                <button class="btn-secondary" onclick="window.location.href='signin.php'">Fazer Login</button>
             </div>
         </div>
-    </header>
-
-    <!-- Background Image -->
-    <div class="hero-background">
-        <img src="assets/AFFGGE/background-celest.svg" alt="OSTRA Background">
     </div>
+
 </body>
 </html>
 
