@@ -183,4 +183,7 @@ try {
     exit;
 }
 
+header("Location: profile.php?upload=sucesso");
+exit;
+
 ?>

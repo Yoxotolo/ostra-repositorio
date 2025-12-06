@@ -27,7 +27,11 @@ if ($id_user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload de musicas -- Ostra</title>
 
-    #region
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/upload.css">
+   
+<!-- 
+
 <style>
 /* estilo simples, ajuste conforme seu design */
 body{font-family:Inter,Arial,Helvetica,sans-serif;margin:20px;background:#f6f7fb;color:#222}
@@ -46,17 +50,38 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 .audio-preview{width:100%}
 </style>
 
+-->
+
 </head>
 <body>
-    
-    <div class="container">
-        <h2>Upload de musicas (1 ou varias)</h2>
-        <p class="note">Escolha as músicas. Para cada arquivo aparecerá um bloco de metadados. Você pode selecionar/usar um projeto existente ou criar um novo projeto abaixo.</p>
+
+<?php include 'sidebar.php'; ?>
+
+<main class="main-content">
+
+        <?php include 'header.php'; ?>
+
+    <div class="upload-content">
 
         <form id="uploadForm" method="post" action="upload_musicas_handler.php" enctype="multipart/form-data" autocomplete="off">
 
-            <label for="">Selecione as musicas (audio)</label><br>
-            <input type="file" id="audioFiles" name="audios[]" accept="audio/*" multiple required> <br>
+          <div class="archive-upload">
+
+            <div class="upload-ost">
+              <h2>Upload de musicas (1 ou varias)</h2>
+              <p class="note">Escolha as músicas. Para cada arquivo aparecerá um bloco de metadados. Você pode selecionar/usar um projeto existente ou criar um novo projeto abaixo.</p>
+
+              <img src="assets/upload-icon.svg" alt="">
+
+                <label for="">Selecione as musicas (audio)</label><br>
+                <input type="file" id="audioFiles" name="audios[]" accept="audio/*" multiple required> <br>
+            </div>
+
+            <div class="">
+
+            </div>
+
+          </div>
 
             <div id="fileList" class="file-list"></div>
 
@@ -92,8 +117,11 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
         </form>
 
     </div>
+</main>
+
 
     <script>
+
 // dados vindos do PHP
 const generos = <?php echo json_encode($generos); ?>;
 const userName = <?= json_encode($_SESSION['nm_nome'] ?? '') ?>;
@@ -145,7 +173,7 @@ function createCard(file, idx) {
 
   // Artista (usuário) + colaboradores
   fields.innerHTML += `<label>Nome do artista / colaboradores</label>
-  <input type="text" name="nm_artista[${idx}]" value="${escapeHtml(userName)}">
+  <input type="text" name="nm_artista[${idx}]" value="${escapeHtml(userName)}" required>
   <small class="note">Separe colaboradores por vírgula</small>`;
 
   // Descrição
@@ -188,7 +216,7 @@ function createCard(file, idx) {
   fields.innerHTML += `<label>Preço (BRL)</label><input type="number" step="0.01" name="vl_musica[${idx}]" value="0.00" required>`;
 
   // Capa (opcional) - se não enviar, poderá ser gravado null
-  fields.innerHTML += `<label>Capa da música (opcional)</label><input type="file" name="ds_foto_capa[${idx}]" accept="image/*">`;
+  fields.innerHTML += `<label>Capa da música (opcional)</label><input type="file" name="ds_foto_capa[${idx}]" accept="image/*" required >`;
 
   // ISRC
   fields.innerHTML += `<label>ISRC (opcional)</label><input type="text" maxlength="12" name="ds_isrc[${idx}]">`;
@@ -230,7 +258,12 @@ document.getElementById('uploadForm').addEventListener('submit', function(e){
     console.warn('Número de metadados diferente do número de arquivos. O backend mapeará pela ordem.');
   }
 });
+
+// #endregion
+
 </script>
+
+
 
 </body>
 </html>

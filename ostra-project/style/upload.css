@@ -1,0 +1,26 @@
+/* #region Pagina de Upload || upload_musicas.php */
+
+    /* #region */
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.archive-upload {
+    display: flex;
+    flex-direction: column;
+    margin: 10% 0%;
+    padding: 0% 15%;
+    width: 100%;
+}
+
+.archive-upload img {
+    width: 30%;
+}
+
+    /* #endregion */
+
+/* #endregion */
