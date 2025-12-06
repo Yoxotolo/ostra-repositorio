@@ -147,7 +147,7 @@
                         <div class="project-list">
                             <?php foreach ($user_projects as $project): ?>
                                 <div class="project-item">
-                                    <img src="<?php echo htmlspecialchars($project['ds_foto_capa'] ?? 'assets/default-album.svg'); ?>" alt="Capa do Projeto" class="project-cover">
+                                    <img src="<?php echo htmlspecialchars($project['ds_foto_capa'] ?? 'assets/default-album.svg'); ?>" alt="Capa do Projeto" class="project-cover" style="width: 25%; aspect-ratio: 1 / 1;">
                                     <div class="project-info">
                                         <h3><?php echo htmlspecialchars($project['nm_projeto']); ?></h3>
                                         <p>ID: #<?php echo $project['cd_projeto']; ?></p>

@@ -27,10 +27,7 @@ if ($id_user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload de musicas -- Ostra</title>
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="style/upload.css">
-   
-<!-- 
+
 
 <style>
 /* estilo simples, ajuste conforme seu design */
@@ -48,9 +45,18 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 .tag{background:#eef5ff;padding:6px 10px;border-radius:999px}
 .note{font-size:13px;color:#666;margin-top:6px}
 .audio-preview{width:100%}
+
+.main-content {
+  margin-left: 80px;
+  padding: 0% 2%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left 0.3s ease;
+}
 </style>
 
--->
+
 
 </head>
 <body>
@@ -58,9 +64,9 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 <?php include 'sidebar.php'; ?>
 
 <main class="main-content">
-
+<!--
         <?php include 'header.php'; ?>
-
+-->
     <div class="upload-content">
 
         <form id="uploadForm" method="post" action="upload_musicas_handler.php" enctype="multipart/form-data" autocomplete="off">

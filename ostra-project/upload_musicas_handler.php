@@ -175,15 +175,16 @@ try {
 
     $pdo->commit();
     echo json_encode(['success'=>true, 'message'=>'Músicas enviadas com sucesso','data'=>$inserted]);
+    header("Location: profile.php?upload=sucesso");
+exit;
     exit;
 } catch (Exception $e) {
     if ($pdo->inTransaction()) $pdo->rollBack();
     http_response_code(500);
     echo json_encode(['sucess'=>false,'message'=>'erro: '.$e->getMessage()]);
+    header("Location: profile.php?upload=sucesso");
     exit;
 }
 
-header("Location: profile.php?upload=sucesso");
-exit;
 
 ?>
