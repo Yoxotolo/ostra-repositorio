@@ -27,7 +27,10 @@ if ($id_user) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload de musicas -- Ostra</title>
 
-
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/upload.css">
+   
+<!-- 
 
 <style>
 /* estilo simples, ajuste conforme seu design */
@@ -45,75 +48,123 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 .tag{background:#eef5ff;padding:6px 10px;border-radius:999px}
 .note{font-size:13px;color:#666;margin-top:6px}
 .audio-preview{width:100%}
-
-.main-content {
-  margin-left: 80px;
-  padding: 0% 2%;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  transition: margin-left 0.3s ease;
-}
 </style>
 
-
+-->
 
 </head>
 <body>
 
+       <!-- <div style="width: 100px; aspect-ratio: 1 / 1; background-color:aquamarine; position:absolute; top: 20%; right: 0%; overflow-x:hidden"></div>
+-->
+       
 <?php include 'sidebar.php'; ?>
 
 <main class="main-content">
-<!--
+
         <?php include 'header.php'; ?>
--->
+
+
     <div class="upload-content">
 
-        <form id="uploadForm" method="post" action="upload_musicas_handler.php" enctype="multipart/form-data" autocomplete="off">
+        <form id="uploadForm" class="formUpload" method="post" action="upload_musicas_handler.php" enctype="multipart/form-data" autocomplete="off">
 
           <div class="archive-upload">
 
-            <div class="upload-ost">
-              <h2>Upload de musicas (1 ou varias)</h2>
-              <p class="note">Escolha as músicas. Para cada arquivo aparecerá um bloco de metadados. Você pode selecionar/usar um projeto existente ou criar um novo projeto abaixo.</p>
+            <div style="display: flex;">
+              
+            <div class="upload-ost" id="dragDrop">
 
-              <img src="assets/upload-icon.svg" alt="">
+              <h2>Upload de musicas <br> (Uma ou Multiplas)</h2>
 
+              <div class="img-drop" id="img-drop">
+                <img id="img-up" src="assets/upload-icon.svg" alt="">
+              </div>
+
+              <div>
                 <label for="">Selecione as musicas (audio)</label><br>
-                <input type="file" id="audioFiles" name="audios[]" accept="audio/*" multiple required> <br>
+                <label for="">Apertei ou arraste no icone</label>
+                <input class="butt-Up" type="file" id="audioFiles" name="audios[]" accept="audio/*" multiple required> <br>
+              </div>
+
             </div>
 
-            <div class="">
+            <div class="upload-ost-content">
+
+              <div>
+
+                <p class="up-txt-A"><b>Escolha as músicas.</b></p>
+                <p class="up-txt-B"> Para cada arquivo aparecerá um card com informações a serem preenchidas.</p>
+                <p class="up-txt-C"> Você pode selecionar/usar um projeto existente ou criar um novo projeto abaixo.</p>
+
+              </div>
+
+              <div>
+                <p class="info-up">
+                  Arquivos suportados <br>
+                 (MP3, WAV, OGG, M4A, FLAC)
+                </p>
+              </div>
+
+            </div>
 
             </div>
 
           </div>
 
-            <div id="fileList" class="file-list"></div>
 
-            <hr>
+
+          <div class="projects">
+            <div>
+              <input type="radio">
+            </div>
+
             <h3>Albuns / projetos</h3>
-            <div class="row">
-                <div style="flex: 1;">
-                    <label>Escolher Projeto</label>
-                    <select name="fk_cd_projeto" id="projetoSelect">
-                        <option value="">-- Selecionar projeto existente --</option>
-                        <?php foreach($projetos as $p): ?>
-                            <option value="<?=htmlspecialchars($p['cd_projeto'])?>"><?=htmlspecialchars($p['nm_projeto'])?></option>
-                            <?php endforeach; ?>
-                    </select>
-                </div>
 
-                <div style="flex: 1;">
-                    <label>Criar novo projeto (opcional) - nome</label>
+
+              <div class="row" >
+                <div style="display: flex; flex-direction:column; width: 42%; flex: 1;">
+                  
+                    <label>Escolher Projeto</label>
+                    <select style="text-align:center;" name="fk_cd_projeto" id="projetoSelect">
+                        <option style="text-align:center;" value="">-- Selecionar projeto existente --</option>
+                        <?php foreach($projetos as $p): ?>
+                            <option style="text-align:center;" value="<?=htmlspecialchars($p['cd_projeto'])?>"><?=htmlspecialchars($p['nm_projeto'])?></option>
+                          <?php endforeach; ?>
+                    </select>
+
+                </div>
+              </div>
+
+              <hr style="margin: 2% 0%;">
+
+            <div class="new-projects-content">
+
+                <div style="display: flex; flex-direction: column; width: 42%;">
+                    <label>Criar novo projeto (opcional)</label>
                     <input type="text" name="nm_projeto_novo" placeholder="Nome do novo projeto (opcional)">
                 </div>
+
+
+              <div style="display: flex; flex-direction: column; width: 42%;">
+                <div style="display: none; flex-direction: column; width: 75%;">
+                  <label> Capa do projeto</label>
+                  <input type="file" name="projeto_cover" accept="image/*" id="coverPfp">
+                </div>
+
+                <div id="imgPfp" style="aspect-ratio: 1 / 1; width: 15%; ">
+                  <img src="assets/img-upload.svg" style="cursor: pointer; object-fit: fill; width: 200%; background-color: #1c1b1d; border-radius: 10px;" alt="">
+              </div>
+
+              </div>
             </div>
 
-            <div style="margin-top: 12px;">
-                <label> Capa do projeto (opcional)</label>
-                <input type="file" name="projeto_cover" accept="image/*">
-            </div>
+
+            <hr style="margin: 2% 0%;">
+
+          </div>
+
+          <div id="fileList" class="file-list"></div>
 
             <div style="margin-top: 16px;">
                 <button type="submit" class="btn">Enviar tudo</button>
@@ -125,6 +176,7 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
     </div>
 </main>
 
+    <script src="JS/YXT.js"></script>
 
     <script>
 
@@ -147,8 +199,8 @@ function createCard(file, idx) {
   card.className = 'card';
   card.dataset.index = idx;
 
-  const left = document.createElement('div'); left.className='left';
-  const right = document.createElement('div'); right.className='right';
+  const left = document.createElement('div'); left.className='left-card';
+  const right = document.createElement('div'); right.className='right-card-open'; right.setAttribute('id', 'righter')
 
   // left: info + audio preview
   const title = document.createElement('div');
@@ -165,6 +217,13 @@ function createCard(file, idx) {
 
   // right: form fields
   const fields = document.createElement('div');
+  fields.className='right-card-field';
+
+  // Parte de abrir pa
+  const opening = document.createElement('div');
+  opening.className='opener';
+  opening.setAttribute('id', 'opener');
+  opening.innerHTML += `<h2>Abrir/fechar Edição</h2>`
 
   // hidden file input clone to submit that specific file with metadata
   const fileField = document.createElement('input');
@@ -194,6 +253,39 @@ function createCard(file, idx) {
   generoHTML += `</select><input type="text" name="nm_genero_custom[${idx}]" placeholder="ou digite novo"></div>`;
   fields.innerHTML += generoHTML;
 
+  let vdcpHTML = `
+    <div class="LadoALado">
+      <div class="Coluna">
+        <label>Visibilidade</label>
+          <select name="ic_visibilidade[${idx}]">
+            <option value="publico">Público</option>
+            <option value="privado">Privado</option>
+            <option value="agendado">Agendado</option>
+          </select>
+      </div>
+
+      <div class="Coluna">
+        <label>Data de lançamento (para agendado)</label><input type="date" name="dt_lancamento[${idx}]">
+      </div>
+
+      <div class="Coluna">
+        <label>Tipo de compra</label>
+          <select name="ic_tipo_venda[${idx}]" onchange="toggleLimit(this, ${idx})">
+            <option value="comum">comum</option>
+            <option value="limitada">limitada</option>
+            <option value="unica">unica</option>
+          </select>
+      </div>
+
+      <div class="Coluna">
+        <label>Preço (BRL)</label><input type="number" step="0.01" name="vl_musica[${idx}]" value="0.00" required>
+      </div>
+  `;
+
+  fields.innerHTML += vdcpHTML;
+
+/*
+
   // Tipo de visualização
   fields.innerHTML += `<label>Visibilidade</label>
     <select name="ic_visibilidade[${idx}]">
@@ -212,17 +304,20 @@ function createCard(file, idx) {
       <option value="unica">unica</option>
     </select>`;
 
+  // Preço
+  fields.innerHTML += `<label>Preço (BRL)</label><input type="number" step="0.01" name="vl_musica[${idx}]" value="0.00" required>`;
+
+   */
+
   // Limite de vendas (visível apenas se limitada)
   fields.innerHTML += `<div id="limit_group_${idx}" style="display:none;margin-top:6px">
       <label>Quantidade limite (se limitada)</label>
       <input type="number" name="qt_limite_vendas[${idx}]" min="1" placeholder="ex: 50">
     </div>`;
 
-  // Preço
-  fields.innerHTML += `<label>Preço (BRL)</label><input type="number" step="0.01" name="vl_musica[${idx}]" value="0.00" required>`;
 
   // Capa (opcional) - se não enviar, poderá ser gravado null
-  fields.innerHTML += `<label>Capa da música (opcional)</label><input type="file" name="ds_foto_capa[${idx}]" accept="image/*" required >`;
+  fields.innerHTML += `<label>Capa da música</label><input type="file" name="ds_foto_capa[${idx}]" accept="image/*" required >`;
 
   // ISRC
   fields.innerHTML += `<label>ISRC (opcional)</label><input type="text" maxlength="12" name="ds_isrc[${idx}]">`;
@@ -233,6 +328,7 @@ function createCard(file, idx) {
   right.appendChild(fields);
   card.appendChild(left);
   card.appendChild(right);
+  card.appendChild(opening);
   fileList.appendChild(card);
 }
 

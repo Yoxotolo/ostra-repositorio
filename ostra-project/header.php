@@ -22,7 +22,7 @@ if ($profile_photo == NULL) {
                 <input type="text" class="search-input" placeholder="Search Bar . . .">
             </div>
 
-            <div class="user-profile">
+            <div class="user-profile" onclick="pagePfp()">
                 <div class="user-avatar">
                     <?php if ($profile_photo !== "assets/default-avatar.png" ): ?>
                         <img src="<?php echo $profile_photo; ?>" alt="Avatar" style="">
@@ -32,3 +32,9 @@ if ($profile_photo == NULL) {
                 </div>
             </div>
         </header>
+
+        <script>
+            function pagePfp() {
+                window.location.href = 'profile.php';
+            }
+        </script>
