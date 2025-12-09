@@ -169,7 +169,7 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 
           <div id="fileList" class="file-list"></div>
 
-            <div style="margin-top: 16px;" class="btnEnd">
+            <div style="margin: 5%; display: flex; width: 100%; justify-content:end;" class="btnEnd">
                 <button type="submit" class="btn"><b>Enviar tudo</b></button>
             </div>
 
