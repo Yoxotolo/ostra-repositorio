@@ -8,6 +8,7 @@ document.getElementById("imgPfp").addEventListener("click", () => {
     document.getElementById("coverPfp").click();
 });
 
+
 document.addEventListener('click', function(e) {
     const opener = e.target.closest('.opener');
     if (!opener) return;

@@ -392,7 +392,7 @@
 .project-item {
   display: flex;
   flex-direction: column;
-  width: 200px;
+  width: 150px;
   aspect-ratio: 1 / 1;
   margin: 1% 2%;
 }
@@ -400,7 +400,10 @@
 .project-item img {
   object-fit:cover;
   aspect-ratio: 1 / 1;
+  border-radius: 10px;
+  cursor: pointer;
 }
+
 
 /*#endregion*/
 
@@ -411,7 +414,7 @@
 
 /* #region Edit Profile Moldal */
 
-/* ========== EDIT PROFILE MODAL ========== */
+/* ========== EDIT PROFILE MODAL ========== project-cover*/
 
 .edit-profile-modal {
   max-width: 500px;

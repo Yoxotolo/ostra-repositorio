@@ -102,7 +102,12 @@
 
 .one {
   display: flex;
-  font-size: 4em;
+  width: 100%;
+}
+
+.one img {
+  object-fit: cover;
+  width: 100%;
 }
 
   /* #endregion*/

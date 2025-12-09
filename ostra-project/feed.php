@@ -53,7 +53,7 @@ $profile_photo = $user['ds_foto_perfil'] ?? 'assets/default-avatar.svg';
         <div>
 
             <div class="no-one">
-                <div class="one"><p><b>BURANYAN</b></p></div>
+                <div class="one"><img style="  object-fit: cover; width: 100%;" src="assets/Feed-Banner-B.png" alt=""></div>
             </div>
 
 

@@ -146,10 +146,10 @@
                     <?php else: ?>
                         <div class="project-list">
                             <?php foreach ($user_projects as $project): ?>
-                                <div class="project-item">
+                                <div class="project-item" onclick="window.location.href = 'projeto_view.php?id=<?= $project['cd_projeto']; ?>';">
                                     <img src="<?php echo htmlspecialchars($project['ds_foto_capa'] ?? 'assets/default-album.svg'); ?>" alt="Capa do Projeto" class="project-cover">
                                     <div class="project-info">
-                                        <h3><?php echo htmlspecialchars($project['nm_projeto']); ?></h3>
+                                        <h4><?php echo htmlspecialchars($project['nm_projeto']); ?></h4>
                                         <!-- <p>ID: #<?php echo $project['cd_projeto']; ?></p> -->
                                         <!-- Aqui você pode adicionar um link para a página do projeto -->
                                     </div>

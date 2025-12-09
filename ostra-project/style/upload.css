@@ -210,7 +210,11 @@
     border-top: #727272 2px solid;
 }
 
-
+.btnEnd {
+    margin: 0.5% 2%;
+    font-size: 1em;
+        font-family: 'Quicksand', sans-serif;
+}
 
         /* #endregion Musicas Cards */
     /* #endregion */

@@ -119,9 +119,9 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 
             <h3>Albuns / projetos</h3>
               <label>Escolher tipo de projeto</label>
-              <div>
+              <div style="margin: 2% 0% 0% 0%;">
                   <input type="radio" id="existingProject" name="projectType" value="existing" checked>  Criar novo projeto
-                  <input type="radio" id="newProject" name="projectType" value="new">  Projeto existente
+                  <input style="margin-left: 4%;" type="radio" id="newProject" name="projectType" value="new">  Projeto existente
               </div>
 
               <div class="row" style="display: none; margin: 2% 0%;" id="projectInput" >
@@ -155,8 +155,8 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
                   <input type="file" name="projeto_cover" accept="image/*" id="coverPfp">
                 </div>
 
-                <div id="imgPfp" style="aspect-ratio: 1 / 1; width: 15%; ">
-                  <img src="assets/img-upload.svg" style="cursor: pointer; object-fit: fill; width: 200%; background-color: #1c1b1d; border-radius: 10px;" alt="">
+                <div id="imgPfp" style="aspect-ratio: 1 / 1; width: 32%; ">
+                  <img src="assets/img-upload.svg" style="cursor: pointer; object-fit: cover; width: 100%; aspect-ratio: 1 / 1; background-color: #1c1b1d; border-radius: 10px;" alt="">
               </div>
 
 
@@ -169,8 +169,8 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 
           <div id="fileList" class="file-list"></div>
 
-            <div style="margin-top: 16px;">
-                <button type="submit" class="btn">Enviar tudo</button>
+            <div style="margin-top: 16px;" class="btnEnd">
+                <button type="submit" class="btn"><b>Enviar tudo</b></button>
             </div>
 
                 <!-- Campos dinâmicos por arquivo serão adicionados via JS em #fileList -->
@@ -222,7 +222,7 @@ fileInput.addEventListener('change', (e) => {
 });
 
 function createCard(file, idx) {
-  const card = document.createElement('div');
+  const card = document.createElement('div'); 
   card.className = 'card';
   card.dataset.index = idx;
 
@@ -311,7 +311,7 @@ function createCard(file, idx) {
 
   fields.innerHTML += vdcpHTML;
 
-/*
+/* 
 
   // Tipo de visualização
   fields.innerHTML += `<label>Visibilidade</label>
@@ -343,8 +343,38 @@ function createCard(file, idx) {
     </div>`;
 
 
-  // Capa (opcional) - se não enviar, poderá ser gravado null
-  fields.innerHTML += `<label>Capa da música</label><input type="file" name="ds_foto_capa[${idx}]" accept="image/*" required >`;
+  const coverId = `cover_${idx}`;
+  const coverInputId = `coverInput_${idx}`;
+
+  fields.innerHTML += `
+    <label style="margin: 2% 0%;">Capa da música</label>
+    <input type="file" style="display:none;" accept="image/*"
+           name="ds_foto_capa[${idx}]" id="${coverInputId}">
+
+    <div id="${coverId}" 
+         style="aspect-ratio:1/1; width:20%; cursor:pointer; margin-bottom: 2%;">
+        <img src="assets/img-upload.svg"
+             style="object-fit:cover; width:100%; height:100%; 
+                    border-radius:10px;">
+    </div>
+  `;
+
+  // Adicionar preview funcional
+  setTimeout(() => {
+      const coverBox = document.getElementById(coverId);
+      const coverInput = document.getElementById(coverInputId);
+      const coverImg = coverBox.querySelector("img");
+
+      coverBox.addEventListener("click", () => coverInput.click());
+
+      coverInput.addEventListener("change", () => {
+          const imgFile = coverInput.files[0];
+          if (imgFile) {
+              const url = URL.createObjectURL(imgFile);
+              coverImg.src = url;
+          }
+      });
+  }, 10);
 
   // ISRC
   fields.innerHTML += `<label>ISRC (opcional)</label><input type="text" maxlength="12" name="ds_isrc[${idx}]">`;
@@ -358,6 +388,27 @@ function createCard(file, idx) {
   card.appendChild(opening);
   fileList.appendChild(card);
 }
+
+// PREVIEW DA CAPA DO ÁLBUM/PROJETO
+document.addEventListener("DOMContentLoaded", () => {
+    const albumBox = document.getElementById("imgPfp");
+    const albumImg = albumBox.querySelector("img");
+    const albumInput = document.getElementById("coverPfp");
+
+    // Clique na imagem para abrir o seletor
+    albumBox.addEventListener("click", () => {
+        albumInput.click();
+    });
+
+    // Preview ao selecionar arquivo
+    albumInput.addEventListener("change", () => {
+        const file = albumInput.files[0];
+        if (file) {
+            const url = URL.createObjectURL(file);
+            albumImg.src = url;
+        }
+    });
+});
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"'`]/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','`':'&#96;'}[m]});
