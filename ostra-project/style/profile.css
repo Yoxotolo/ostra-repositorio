@@ -381,6 +381,27 @@
   align-items: baseline;
 }
 
+
+
+
+.project-list {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.project-item {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  aspect-ratio: 1 / 1;
+  margin: 1% 2%;
+}
+
+.project-item img {
+  object-fit:cover;
+  aspect-ratio: 1 / 1;
+}
+
 /*#endregion*/
 
 

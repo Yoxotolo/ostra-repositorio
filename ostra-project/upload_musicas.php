@@ -115,14 +115,16 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 
 
           <div class="projects">
-            <div>
-              <input type="radio">
-            </div>
+
 
             <h3>Albuns / projetos</h3>
+              <label>Escolher tipo de projeto</label>
+              <div>
+                  <input type="radio" id="existingProject" name="projectType" value="existing" checked>  Criar novo projeto
+                  <input type="radio" id="newProject" name="projectType" value="new">  Projeto existente
+              </div>
 
-
-              <div class="row" >
+              <div class="row" style="display: none; margin: 2% 0%;" id="projectInput" >
                 <div style="display: flex; flex-direction:column; width: 42%; flex: 1;">
                   
                     <label>Escolher Projeto</label>
@@ -133,12 +135,13 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
                           <?php endforeach; ?>
                     </select>
 
+
                 </div>
+                              <hr style="margin: 2% 0%;">
               </div>
 
-              <hr style="margin: 2% 0%;">
 
-            <div class="new-projects-content">
+            <div class="new-projects-content" id="coverInput">
 
                 <div style="display: flex; flex-direction: column; width: 42%;">
                     <label>Criar novo projeto (opcional)</label>
@@ -156,11 +159,11 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
                   <img src="assets/img-upload.svg" style="cursor: pointer; object-fit: fill; width: 200%; background-color: #1c1b1d; border-radius: 10px;" alt="">
               </div>
 
+
               </div>
             </div>
 
 
-            <hr style="margin: 2% 0%;">
 
           </div>
 
@@ -175,7 +178,31 @@ input,select,textarea{width:100%;padding:8px;border-radius:6px;border:1px solid 
 
     </div>
 </main>
+<!--
+<script>
+    // Quando o "Projeto existente" é selecionado
+    document.getElementById("existingProject").addEventListener("change", function() {
+        // Habilitar o campo de selecionar projeto existente
+        document.getElementById("projetoSelect").required = true;
 
+        // Desabilitar o campo de criar novo projeto
+        document.getElementsByName("nm_projeto_novo")[0].required = false;
+        document.getElementById("projectInput").style.display = "none"; // Esconde o campo de criação de novo projeto
+        document.getElementById("coverInput").style.display = "none";  // Esconde o campo de capa do projeto
+    });
+
+    // Quando "Criar novo projeto" é selecionado
+    document.getElementById("newProject").addEventListener("change", function() {
+        // Habilitar o campo de nome do novo projeto
+        document.getElementsByName("nm_projeto_novo")[0].required = true;
+        document.getElementById("projetoSelect").required = false;
+
+        // Mostrar o campo de criação de novo projeto
+        document.getElementById("projectInput").style.display = "flex"; // Mostra o campo de nome do novo projeto
+        document.getElementById("coverInput").style.display = "flex"; // Mostra o campo de capa do projeto
+    });
+</script>
+                        -->
     <script src="JS/YXT.js"></script>
 
     <script>
